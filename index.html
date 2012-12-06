@@ -7,6 +7,7 @@
 			body {
 				font-family: monospace;
 			}
+			/* Console styles */
 			.command {
 				color: #487ffb;
 			}
@@ -16,14 +17,31 @@
 			.error {
 				color: #ff0000;
 			}
+
+			/* Autocomplete */
+			#autocomplete {
+				margin: 0;
+				padding: 0;
+				//display: none;
+			}
+			#autocomplete li {
+				padding: 3px 0;
+			}
+			#autocomplete li:hover {
+				background: #d4d4d4;
+			}
 		</style>
 	</head>
 	<body>
-		<ul id="console"></ul>
-		<input type="text" placeholder="console.log" autofocus="autofocus" id="prompt">
-		<datalist id="prompt">
-			
-		</datalist>
+		<ul id="console">
+			<li>
+				<span class="command">welcome()</span>
+				<br>
+				Write something in the console below.
+			</li>
+		</ul>
+		<input type="text" placeholder="console.log" autofocus="autofocus">
+		<ul id="autocomplete"></ul>
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript" src="test.js"></script>
