@@ -1,4 +1,8 @@
 (function  () {
+
+    /*
+    Create the object with the info about me.
+     */
         
     // A global. Like a badass
     window.Stefan = {};
@@ -33,24 +37,18 @@
         'stefan.learning'
     ];
 
-    for (var i = commands.length - 1; i >= 0; i--) {
-        $('datalist#prompt').append('<option value="'+commands[i]+'">')
-        console.log(commands[i]);
-    };
-    
+    /*
+    Bind functions to the keyup-event
+     */
     $('input').on('keyup', function(e) {
 
+        // Store the value of the input
         var value = $(this).val().toLowerCase();
-        var regexp = new RegExp('^'+value, 'g');
 
-        if ( value.length != 0 && 'stefan'.search(regexp) != '-1' ) {
-            console.log('visa');
-            $('datalist#prompt').show();
-        } else {
-            console.log('dölj');
-            $('datalist#prompt').hide();
-        }
+        // Run the autoComplete-function
+        autoComplete(value);
 
+        // If the user hits return (keycode = 13)
         if (e.keyCode == 13) {
             
             var arrCheck = $.inArray( value, commands );
@@ -98,7 +96,26 @@
                     $('#console').append('<li class="error">ReferenceError: '+value+' is not defined</li>');        
             }
             $(this).val('');
+            $('#autocomplete').html('');
+        
+        } // if keycode
+    
+    }); // on keyup
+
+    function autoComplete (value) {
+        var regexp = new RegExp('^'+value, 'g');
+        $('#autocomplete').html('');
+        for (var i = commands.length - 1; i >= 0; i--) {
+            if ( value.length != 0 && commands[i].search(regexp) != '-1' ) {
+                $('#autocomplete').append('<li>'+commands[i]+'</li>');
+            } 
+        };
+
+        /*if ( value.length != 0 && 'stefan'.search(regexp) != '-1' ) {
+            $('#autocomplete').show();
+        } else {
+            $('#autocomplete').hide();
+        }*/
     }
-    });
 
 })();
