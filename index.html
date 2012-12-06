@@ -8,14 +8,19 @@
 				font-family: monospace;
 			}
 			/* Console styles */
+			#console li {
+				list-style-image: url(img/command_arrow.png);
+			}
+
 			.command {
 				color: #487ffb;
 			}
 			.array {
 				color: #b24620;
 			}
-			.error {
+			#console .error {
 				color: #ff0000;
+				list-style-image: url(img/icon_error.png);
 			}
 
 			/* Autocomplete */
@@ -27,9 +32,11 @@
 			#autocomplete li {
 				padding: 3px 0;
 			}
-			#autocomplete li:hover {
+			#autocomplete li:hover,
+			.active-autocomplete {
 				background: #d4d4d4;
 			}
+
 		</style>
 	</head>
 	<body>
