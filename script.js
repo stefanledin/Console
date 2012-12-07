@@ -61,16 +61,16 @@
         
         // If the user hits arrowdown
         if (e.keyCode === 40) {
+            if (arrowDownCount === suggestions.length) {
+                arrowDownCount = 0;
+            }
             arrowDownCount = arrowDownCount+1;
 
             $('li.active-autocomplete').removeClass('active-autocomplete');
             $(suggestions[arrowDownCount-1]).addClass('active-autocomplete');
             
-            if (arrowDownCount === suggestions.length) {
-                arrowDownCount = 0;
-            }
         }
-        // If the user hits arrowuo
+        // If the user hits arrowup
         if (e.keyCode === 38) {
             if (arrowDownCount === 1) {
                 arrowDownCount = suggestions.length;
@@ -80,18 +80,14 @@
 
             $('li.active-autocomplete').removeClass('active-autocomplete');
             $(suggestions[arrowDownCount-1]).addClass('active-autocomplete');
-            
 
-        } 
+        }
 
         if (e.keyCode === 13 && arrowDownCount != 0) {
-            console.log(arrowDownCount);
-            $('input').val($(suggestions[arrowDownCount-1]).text());
-            executeCommand($('input').val());
+            return $(suggestions[arrowDownCount-1]).text();
         }
         
     }
-
 
     /*
     Write stuff on the site
@@ -140,10 +136,12 @@
 
             // Error
             default:
-                $('#console').append('<li class="error">ReferenceError: '+value+' is not defined</li>');        
+                $('#console').append('<li class="error">ReferenceError: '+value+' is not defined</li>');
+
         }
         $('input').val('');
         $('#autocomplete').html('');
+        $('input').focus();
     }
 
     /*
@@ -153,16 +151,21 @@
     $('input').on('keyup', function(e) {
         // Store the value of the input
         var value = $(this).val().toLowerCase();
-        console.log(e.keyCode);
-        /*if (e.keyCode != 40 || e.keyCode != 38) {
-            arrowDownCount = 0;
-        }*/
+        
 
         // Run the autoComplete-function
-        autoComplete(value, e);
-        console.log(arrowDownCount);
-        // If the user hits return (keycode = 13)
-        if (e.keyCode == 13 && arrowDownCount == 0) {
+        var ac = autoComplete(value, e);
+        if (typeof(ac) == 'string') {
+            value = ac;
+            $(this).val(value); 
+        }
+
+        $('#autocomplete').find('li').on('click', function  () {
+            executeCommand($(this).text());
+        });
+        
+        
+        if (e.keyCode === 13) {
             executeCommand(value);        
         } 
     
