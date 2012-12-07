@@ -30,53 +30,52 @@
 				$('input').on('keyup', function  (e) {
 					
 					var value = $(this).val();
-					
 
 					if (value.length > 0) {
 						$('ul#autocomplete').show();
 					} else {
 						$('ul#autocomplete').hide()
 					}
-					console.log(e.keyCode);
-					if (e.keyCode !== 40) {
+					
+					if (e.keyCode === 40) {
+						controllAutoComplete(e);
+					} else if (e.keyCode === 38) {
+						controllAutoComplete(e);
+					} else {
 						i = 0;
 						$('.active').removeClass('active');
-					} /*else if (e.keyCode !== 38) {
-						i = 0;
-						$('.active').removeClass('active');
-					}*/
-
-					if (e.keyCode == 40) {
-						controllAutoComplete(e);
-					} else if (e.keyCode == 38) {
-						controllAutoComplete(e);
 					}
 
 				});
 
 				function controllAutoComplete (e) {
-					if (e.keyCode == 40) {
-						$('.active').removeClass('active');
-						if (i < suggestions.length-1) {
-							$(suggestions[i]).addClass('active');
-							i = i+1;
-						} else {
-							$(suggestions[i]).addClass('active');
+
+					$('.active').removeClass('active');
+					if (e.keyCode === 40) {
+						
+						i = i+1;	
+					
+						$(suggestions[i-1]).addClass('active');
+
+						if (i === suggestions.length) {
 							i = 0;
 						}
+						
 					} // keycode 40
 					
-					if (e.keyCode == 38) {
-						$('.active').removeClass('active');
-						if (i > 0) {
-							$(suggestions[i]).addClass('active');
-							i = i-1;
+					if (e.keyCode === 38) {
+						// i = 1 från början
+						if (i === 1) {
+							i = suggestions.length;
 						} else {
-							$(suggestions[i]).addClass('active');
-							i = suggestions.length-1;
+							i = i-1;	
 						}
+						
+						$(suggestions[i-1]).addClass('active');
+						
 					}
-				}
+
+				} // controllAutoComplete()
 			});
 		</script>
 	</body>

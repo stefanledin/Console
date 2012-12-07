@@ -60,19 +60,31 @@
         var suggestions = $('#autocomplete').find('li');
         
         // If the user hits arrowdown
-        if (e.keyCode == 40) {
-            $('li.active-autocomplete').removeClass('active-autocomplete');
-            $(suggestions[arrowDownCount]).addClass('active-autocomplete');
+        if (e.keyCode === 40) {
             arrowDownCount = arrowDownCount+1;
+
+            $('li.active-autocomplete').removeClass('active-autocomplete');
+            $(suggestions[arrowDownCount-1]).addClass('active-autocomplete');
+            
+            if (arrowDownCount === suggestions.length) {
+                arrowDownCount = 0;
+            }
         }
         // If the user hits arrowuo
-        if (e.keyCode == 38) {
+        if (e.keyCode === 38) {
+            if (arrowDownCount === 1) {
+                arrowDownCount = suggestions.length;
+            } else {
+                arrowDownCount = arrowDownCount-1;
+            }
+
             $('li.active-autocomplete').removeClass('active-autocomplete');
-            $(suggestions[arrowDownCount]).addClass('active-autocomplete');
-            arrowDownCount = arrowDownCount-1;
+            $(suggestions[arrowDownCount-1]).addClass('active-autocomplete');
+            
+
         } 
 
-        if (e.keyCode == 13 && arrowDownCount != 0) {
+        if (e.keyCode === 13 && arrowDownCount != 0) {
             console.log(arrowDownCount);
             $('input').val($(suggestions[arrowDownCount-1]).text());
             executeCommand($('input').val());
