@@ -30,7 +30,9 @@
     Stefan.contact = {
         email : 'info@stefanledin.se',
         twitter : '@stefanledin',
-        linkedin : 'http://www.linkedin.com/pub/stefan-ledin/34/973/6ba'
+        linkedin : 'http://www.linkedin.com/pub/stefan-ledin/34/973/6ba',
+        github : 'https://github.com/stefanledin'
+        // Facebook? Add me as a friend if you're a hot girl =)
     };
 
     /*
@@ -55,7 +57,11 @@
         'stefan.interests',
         'stefan.skills',
         'stefan.learning',
-        'stefan.contact'
+        'stefan.contact',
+        'stefan.contact.email',
+        'stefan.contact.twitter',
+        'stefan.contact.linkedin',
+        'stefan.contact.github'
     ];
 
 
@@ -130,7 +136,8 @@
             break;
             // Stefan.location
             case 2:
-                el.$console.append('<li><span class="command">Stefan.location</span>'+Stefan.location+'</li>');
+                el.$console.append('<li><span class="command">Stefan.location</span><br><span class="object-name"><span class="object-icon icon-object-closed"></span>Object</span><br><span class="object-content"><span class="properties">city</span>: <span class="value">'+Stefan.location.city+'</span><br><span class="properties">country</span>: <span class="value">'+Stefan.location.country+'</span></span></li>');
+                openObject();
             break;
             // Stefan.location.city
             case 3:
@@ -158,7 +165,24 @@
             break;
             // stefan.contact
             case 9:
-                el.$console.append('<li><span class="command">Stefan.contact</span><br><span class="open-object"><span class="object-icon object-closed"></span>Object</span></li>');
+                el.$console.append('<li><span class="command">Stefan.contact</span><br><span class="object-name"><span class="object-icon icon-object-closed"></span>Object</span><br><span class="object-content"><span class="properties">email</span>: <span class="value">'+Stefan.contact.email+'</span><br><span class="properties">twitter</span>: <span class="value">'+Stefan.contact.twitter+'</span><br><span class="properties">linkedin</span>: <span class="value">'+Stefan.contact.linkedin+'</span><br><span class="properties">github</span>: <span class="value">'+Stefan.contact.github+'</span></span></li>');
+                openObject();
+            break;
+            // Stefan.contact.email
+            case 10:
+                el.$console.append('<li><span class="command">Stefan.contact.email</span><br><span class="array">'+Stefan.contact.email+'</span></li>');
+            break;
+            // Stefan.contact.twitter
+            case 11:
+                el.$console.append('<li><span class="command">Stefan.contact.twitter</span><br><span class="array">'+Stefan.contact.twitter+'</span></li>');
+            break;
+            // Stefan.contact.linkedin
+            case 12:
+                el.$console.append('<li><span class="command">Stefan.contact.linkedin</span><br><span class="array">'+Stefan.contact.linkedin+'</span></li>');
+            break;
+            // Stefan.contact.github
+            case 13:
+                el.$console.append('<li><span class="command">Stefan.contact.github</span><br><span class="array">'+Stefan.contact.github+'</span></li>');
             break;
 
             // Error
@@ -193,9 +217,16 @@
         
         
         if (e.keyCode === 13) {
-            executeCommand(value);        
+            executeCommand(value);
         } 
     
     }); // on keyup
+
+    function openObject () {
+        $('.object-icon').on('click', function  () {
+            $(this).toggleClass('icon-object-open');
+            $(this).parents('li').find('.object-content').toggle();
+        });
+    }
 
 })();
