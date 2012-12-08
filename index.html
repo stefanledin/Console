@@ -6,6 +6,7 @@
 		<style type="text/css">
 			body {
 				font-family: monospace;
+				/*background: url('http://www.stefanledin.se/wp-content/themes/tema/img/background.png') #387dc2;*/
 			}
 			/* Console styles */
 			#console li {
@@ -15,10 +16,16 @@
 			.command {
 				color: #487ffb;
 			}
-			.array {
+			.array,
+			.value {
 				color: #b24620;
 			}
-			.open-object {
+			.properties {
+				margin-left: 25px;
+				color: #771a8d;
+			}
+
+			.object-name {
 
 			}
 			.object-icon {
@@ -29,9 +36,17 @@
 				background: url(img/icon_object.png) no-repeat 0 2px;
 				cursor: pointer;
 			}
-			.object-closed {
+			.icon-object-closed {
 				background-position: 0 0;
 			}
+			.icon-object-open {
+				background-position: -10px 1px;
+			}
+			.object-content {
+				display: none;
+			}
+
+
 			#console .error {
 				color: #ff0000;
 				list-style-image: url(img/icon_error.png);
