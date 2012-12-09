@@ -61,9 +61,10 @@
         'stefan.contact.email',
         'stefan.contact.twitter',
         'stefan.contact.linkedin',
-        'stefan.contact.github'
+        'stefan.contact.github',
+        'clear()',
+        'stefan'
     ];
-
 
 
 
@@ -121,6 +122,7 @@
     /*
     Write stuff on the site
      */
+    var errors = 0;
     function executeCommand (value) {
         arrowDownCount = 0;
         var arrCheck = $.inArray( value, commands );
@@ -153,7 +155,7 @@
             break;
             // Stefan.interests
             case 6:
-                el.$console.append('<li><span class="command">Stefan.interests</span><br>'+Stefan.interests+'</li>');
+                el.$console.append('<li><span class="command">Stefan.interests</span><br><span class="array">'+Stefan.interests+'</span></li>');
             break;
             // Stefan.skills
             case 7:
@@ -184,11 +186,24 @@
             case 13:
                 el.$console.append('<li><span class="command">Stefan.contact.github</span><br><span class="array">'+Stefan.contact.github+'</span></li>');
             break;
+            // Clear()
+            case 14:
+                el.$console.html('');
+            break;
+            // Stefan
+            case 15:
+                el.$console.append('<li><span class="command">Stefan</span><br>That\'s me! Try to call the method "Stefan.presentation()"</li>');
+            break;
 
             // Error
             default:
                 el.$console.append('<li class="error">ReferenceError: '+value+' is not defined</li>');
+                errors = errors +1;
 
+        }
+        if (errors === 1) {
+            el.$console.append('<li>Hint: try with "Stefan"</li>');
+            errors = 0;
         }
         el.$input.val('');
         el.$autocomplete.html('');
@@ -222,6 +237,7 @@
     
     }); // on keyup
 
+    // Must be wrapped in a function or jQuery won't find the element. .live would work, but it't deprecated and bad for performance...
     function openObject () {
         $('.object-icon').on('click', function  () {
             $(this).toggleClass('icon-object-open');
