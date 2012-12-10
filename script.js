@@ -158,7 +158,7 @@
             break;
             // stefan.contact
             case 9:
-                el.$console.append('<li><span class="command">Stefan.contact</span><br><span class="open-object"><span class="object-icon object-closed"></span>Object</span></li>');
+                el.$console.append('<li><span class="command">Stefan.contact</span><br><span class="open-object"><span class="object-icon object-closed"></span>Object</span><br><span class="object-properties">oigfej</span></li>');
             break;
 
             // Error
