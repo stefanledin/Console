@@ -21,7 +21,7 @@
 
     Stefan.interests = '["Web development", "Sports", "Apple"]';
 
-    Stefan.skills = '["HTML", "CSS", "Javascript", "jQuery", "PHP", "MySQL", "CodeIgniter", "Laravel", "Wordpress", "Drupal", "Facebook API", "Twitter API", "LinkedIn API", "Google Maps API", "Responsive Web Design", "Regular Expressions", "jQuery Mobile", "Photoshop", "Illustrator", "InDesign", "Flash", "Git"]';
+    Stefan.skills = '["HTML", "CSS", "Javascript", "jQuery", "PHP", "MySQL", "CodeIgniter", "Laravel", "Wordpress", "Drupal", "Facebook API", "Twitter API", "LinkedIn API", "Google Maps API", "YouTube API", "Instagram API", "Responsive Web Design", "Regular Expressions", "jQuery Mobile", "Photoshop", "Illustrator", "InDesign", "Flash", "Git"]';
 
     Stefan.learning = '["Backbone.js", "Ruby", "Ruby On Rails", "Sinatra"]';
 
